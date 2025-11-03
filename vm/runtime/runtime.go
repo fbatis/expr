@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	
+	"strings"
 
 	"github.com/expr-lang/expr/internal/deref"
 )
@@ -13,6 +15,26 @@ import (
 var (
 	TagList = []string{`json`, `sql`, `db`, `expr`, `leopard`, `gorm`}
 )
+
+func columnName(f reflect.StructField) string {
+	for _, tag := range TagList {
+		if n, ok := f.Tag.Lookup(tag); ok {
+			for _, piece := range strings.Split(n, `;`) {
+				if !strings.HasPrefix(piece, `column`) {
+					continue
+				}
+				return piece[strings.Index(piece, `:`)+1:]
+			}
+
+			if strings.Contains(n, `,`) {
+				return n[0:strings.Index(n, `,`)]
+			}
+
+			return n
+		}
+	}
+	return strings.ToLower(f.Name)
+}
 
 func Fetch(from, i any) any {
 	v := reflect.ValueOf(from)
@@ -69,17 +91,14 @@ func Fetch(from, i any) any {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			for _, tag := range TagList {
-				switch field.Tag.Get(tag) {
-				case "-":
-					continue
-				case fieldName:
-					return true
-				default:
-					return name == fieldName
-				}
+			switch columnName(field) {
+			case "-":
+				return false
+			case fieldName:
+				return true
+			default:
+				return name == fieldName
 			}
-			return false
 		})
 		if value.IsValid() {
 			return value.Interface()
@@ -230,14 +249,8 @@ func In(needle any, array any) bool {
 			panic(fmt.Sprintf("cannot use %T as field name of %T", needle, array))
 		}
 		field, ok := v.Type().FieldByName(n.String())
-		if !ok || !field.IsExported() {
+		if !ok || !field.IsExported() || columnName(field) == "-" {
 			return false
-		}
-		for _, tag := range TagList {
-			switch field.Tag.Get(tag) {
-			case "-":
-				return false
-			}
 		}
 		value := v.FieldByIndex(field.Index)
 		if value.IsValid() {
