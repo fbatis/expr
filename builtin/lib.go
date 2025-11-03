@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"unicode/utf8"
     
-	"github.com/expr-lang/expr/internal/deref"
-	"github.com/expr-lang/expr/vm/runtime"
+	"github.com/fbatis/expr/internal/deref"
+	"github.com/fbatis/expr/vm/runtime"
 )
 
 var (
