@@ -53,7 +53,7 @@ func columnNameByTag(t reflect.StructTag) string {
 }
 
 func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
-	switch taggedName := columnNameByTag(field); taggedName {
+	switch taggedName := columnNameByTag(tag); taggedName {
 	case "-":
 		return "", false
 	case "":
