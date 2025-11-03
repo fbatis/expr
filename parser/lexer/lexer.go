@@ -6,8 +6,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/expr-lang/expr/file"
-	"github.com/expr-lang/expr/internal/ring"
+	"github.com/fbatis/expr/file"
+	"github.com/fbatis/expr/internal/ring"
 )
 
 const ringChunkSize = 10
