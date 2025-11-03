@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	"strings"
 	"strconv"
 	"unicode/utf8"
     
@@ -425,17 +426,14 @@ func get(params ...any) (out any, err error) {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			for _, tag := range TagList {
-				switch field.Tag.Get(tag) {
-				case "-":
-					continue
-				case fieldName:
-					return true
-				default:
-					return name == fieldName
-				}
+			switch columnName(field) {
+			case "-":
+				return false
+			case fieldName:
+				return true
+			default:
+				return name == fieldName
 			}
-			return false
 		})
 		if value.IsValid() {
 			return value.Interface(), nil
@@ -445,4 +443,24 @@ func get(params ...any) (out any, err error) {
 	// Main difference from runtime.Fetch
 	// is that we return `nil` instead of panic.
 	return nil, nil
+}
+
+func columnName(f reflect.StructField) string {
+	for _, tag := range TagList {
+		if n, ok := f.Tag.Lookup(tag); ok {
+			for _, piece := range strings.Split(n, `;`) {
+				if !strings.HasPrefix(piece, `column`) {
+					continue
+				}
+				return piece[strings.Index(piece, `:`)+1:]
+			}
+
+			if strings.Contains(n, `,`) {
+				return n[0:strings.Index(n, `,`)]
+			}
+
+			return n
+		}
+	}
+	return strings.ToLower(f.Name)
 }
