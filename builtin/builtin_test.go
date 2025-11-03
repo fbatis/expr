@@ -7,15 +7,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/expr-lang/expr/internal/testify/assert"
-	"github.com/expr-lang/expr/internal/testify/require"
+	"github.com/fbatis/expr/internal/testify/assert"
+	"github.com/fbatis/expr/internal/testify/require"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/builtin"
-	"github.com/expr-lang/expr/checker"
-	"github.com/expr-lang/expr/conf"
-	"github.com/expr-lang/expr/parser"
-	"github.com/expr-lang/expr/test/mock"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/builtin"
+	"github.com/fbatis/expr/checker"
+	"github.com/fbatis/expr/conf"
+	"github.com/fbatis/expr/parser"
+	"github.com/fbatis/expr/test/mock"
 )
 
 func TestBuiltin(t *testing.T) {
