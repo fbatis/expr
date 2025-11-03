@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
-	. "github.com/expr-lang/expr/checker/nature"
-	"github.com/expr-lang/expr/internal/deref"
-	"github.com/expr-lang/expr/types"
+	. "github.com/fbatis/expr/checker/nature"
+	"github.com/fbatis/expr/internal/deref"
+	"github.com/fbatis/expr/types"
 )
 
 // Env returns the Nature of the given environment.
