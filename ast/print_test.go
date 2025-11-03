@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/fbatis/expr/internal/testify/assert"
-	"github.comfbatis/expr/internal/testify/require"
+	"github.com/fbatis/expr/internal/testify/require"
 
 	"github.com/fbatis/expr/ast"
 	"github.com/fbatis/expr/parser"
