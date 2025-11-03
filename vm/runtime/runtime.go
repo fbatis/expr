@@ -233,7 +233,7 @@ func In(needle any, array any) bool {
 		if !ok || !field.IsExported() {
 			return false
 		}
-		for _, tag := range nature.TagList {
+		for _, tag := range TagList {
 			switch field.Tag.Get(tag) {
 			case "-":
 				return false
