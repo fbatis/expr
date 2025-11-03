@@ -8,8 +8,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/builtin"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/builtin"
 )
 
 var (
