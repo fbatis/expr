@@ -6,7 +6,8 @@ import (
 	"reflect"
 	"strconv"
 	"unicode/utf8"
-
+    
+	"github.com/expr-lang/expr/checker/nature"
 	"github.com/expr-lang/expr/internal/deref"
 	"github.com/expr-lang/expr/vm/runtime"
 )
@@ -421,14 +422,17 @@ func get(params ...any) (out any, err error) {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			switch field.Tag.Get("expr") {
-			case "-":
-				return false
-			case fieldName:
-				return true
-			default:
-				return name == fieldName
+			for _, tag := range nature.TagList {
+				switch field.Tag.Get(tag) {
+				case "-":
+					continue
+				case fieldName:
+					return true
+				default:
+					return name == fieldName
+				}
 			}
+			return false
 		})
 		if value.IsValid() {
 			return value.Interface(), nil
