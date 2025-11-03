@@ -3,6 +3,8 @@ package nature
 import (
 	"reflect"
 
+	"strings"
+	
 	"github.com/expr-lang/expr/internal/deref"
 )
 
@@ -10,19 +12,35 @@ var (
 	TagList = []string{`json`, `sql`, `db`, `expr`, `leopard`, `gorm`}
 )
 
+func columnName(f reflect.StructField) string {
+	for _, tag := range TagList {
+		if n, ok := f.Tag.Lookup(tag); ok {
+			for _, piece := range strings.Split(n, `;`) {
+				if !strings.HasPrefix(piece, `column`) {
+					continue
+				}
+				return piece[strings.Index(piece, `:`)+1:]
+			}
 
-func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
-	for _, tagName := range TagList {
-		switch taggedName := tag.Get(tagName); taggedName {
-		case "-":
-			continue
-		case "":
-			return fieldName, true
-		default:
-			return taggedName, true
+			if strings.Contains(n, `,`) {
+				return n[0:strings.Index(n, `,`)]
+			}
+
+			return n
 		}
 	}
-	return ``, false
+	return strings.ToLower(f.Name)
+}
+
+func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
+	switch taggedName := columnName(field); taggedName {
+	case "-":
+		return "", false
+	case "":
+		return field.Name, true
+	default:
+		return taggedName, true
+	}
 }
 
 type structData struct {
