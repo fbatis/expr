@@ -32,12 +32,32 @@ func columnName(f reflect.StructField) string {
 	return strings.ToLower(f.Name)
 }
 
+func columnNameByTag(t reflect.StructTag) string {
+	for _, tag := range TagList {
+		if n, ok := t.Lookup(tag); ok {
+			for _, piece := range strings.Split(n, `;`) {
+				if !strings.HasPrefix(piece, `column`) {
+					continue
+				}
+				return piece[strings.Index(piece, `:`)+1:]
+			}
+
+			if strings.Contains(n, `,`) {
+				return n[0:strings.Index(n, `,`)]
+			}
+
+			return n
+		}
+	}
+	return ``
+}
+
 func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
-	switch taggedName := columnName(field); taggedName {
+	switch taggedName := columnNameByTag(field); taggedName {
 	case "-":
 		return "", false
 	case "":
-		return field.Name, true
+		return fieldName, true
 	default:
 		return taggedName, true
 	}
