@@ -4,12 +4,12 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/ast"
-	"github.com/expr-lang/expr/checker"
-	"github.com/expr-lang/expr/checker/nature"
-	"github.com/expr-lang/expr/conf"
-	"github.com/expr-lang/expr/parser"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/ast"
+	"github.com/fbatis/expr/checker"
+	"github.com/fbatis/expr/checker/nature"
+	"github.com/fbatis/expr/conf"
+	"github.com/fbatis/expr/parser"
 )
 
 func BenchmarkChecker(b *testing.B) {
