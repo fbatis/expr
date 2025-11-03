@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/checker"
-	"github.com/expr-lang/expr/conf"
-	"github.com/expr-lang/expr/internal/testify/require"
-	"github.com/expr-lang/expr/parser"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/checker"
+	"github.com/fbatis/expr/conf"
+	"github.com/fbatis/expr/internal/testify/require"
+	"github.com/fbatis/expr/parser"
 )
 
 func TestIssue844(t *testing.T) {
