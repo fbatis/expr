@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/expr-lang/expr/builtin"
-	"github.com/expr-lang/expr/internal/deref"
+	"github.com/fbatis/expr/builtin"
+	"github.com/fbatis/expr/internal/deref"
 )
 
 var (
