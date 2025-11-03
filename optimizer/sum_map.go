@@ -1,7 +1,7 @@
 package optimizer
 
 import (
-	. "github.com/expr-lang/expr/ast"
+	. "github.com/fbatis/expr/ast"
 )
 
 type sumMap struct{}
