@@ -6,12 +6,12 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/expr-lang/expr/ast"
-	"github.com/expr-lang/expr/builtin"
-	. "github.com/expr-lang/expr/checker/nature"
-	"github.com/expr-lang/expr/conf"
-	"github.com/expr-lang/expr/file"
-	"github.com/expr-lang/expr/parser"
+	"github.com/fbatis/expr/ast"
+	"github.com/fbatis/expr/builtin"
+	. "github.com/fbatis/expr/checker/nature"
+	"github.com/fbatis/expr/conf"
+	"github.com/fbatis/expr/file"
+	"github.com/fbatis/expr/parser"
 )
 
 var (
