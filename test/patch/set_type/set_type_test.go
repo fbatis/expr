@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/expr-lang/expr/internal/testify/require"
+	"github.com/fbatis/expr/internal/testify/require"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/ast"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/ast"
 )
 
 func TestPatch_SetType(t *testing.T) {
