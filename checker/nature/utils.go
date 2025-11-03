@@ -12,12 +12,12 @@ var (
 
 
 func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
-	for _, tag := range TagList {
-		switch taggedName := field.Tag.Get(tag); taggedName {
+	for _, tagName := range TagList {
+		switch taggedName := tag.Get(tagName); taggedName {
 		case "-":
 			continue
 		case "":
-			return field.Name, true
+			return fieldName, true
 		default:
 			return taggedName, true
 		}
