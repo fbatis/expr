@@ -6,14 +6,14 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/expr-lang/expr/test/fuzz"
+	"github.com/fbatis/expr/test/fuzz"
 
 	"github.com/bettercap/readline"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/builtin"
-	"github.com/expr-lang/expr/debug"
-	"github.com/expr-lang/expr/vm"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/builtin"
+	"github.com/fbatis/expr/debug"
+	"github.com/fbatis/expr/vm"
 )
 
 var keywords = []string{
