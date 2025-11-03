@@ -3,8 +3,8 @@ package issue_test
 import (
 	"testing"
 
-	"github.com/expr-lang/expr"
-	"github.com/expr-lang/expr/internal/testify/require"
+	"github.com/fbatis/expr"
+	"github.com/fbatis/expr/internal/testify/require"
 )
 
 func TestEnvFieldMethods(t *testing.T) {
