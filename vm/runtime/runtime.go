@@ -7,8 +7,11 @@ import (
 	"math"
 	"reflect"
 
-	"github.com/expr-lang/expr/checker/nature"
 	"github.com/expr-lang/expr/internal/deref"
+)
+
+var (
+	TagList = []string{`json`, `sql`, `db`, `expr`, `leopard`, `gorm`}
 )
 
 func Fetch(from, i any) any {
@@ -66,7 +69,7 @@ func Fetch(from, i any) any {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			for _, tag := range nature.TagList {
+			for _, tag := range TagList {
 				switch field.Tag.Get(tag) {
 				case "-":
 					continue
