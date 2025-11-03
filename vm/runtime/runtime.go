@@ -9,7 +9,7 @@ import (
 	
 	"strings"
 
-	"github.com/expr-lang/expr/internal/deref"
+	"github.com/fbatis/expr/internal/deref"
 )
 
 var (
