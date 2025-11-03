@@ -6,15 +6,23 @@ import (
 	"github.com/expr-lang/expr/internal/deref"
 )
 
+var (
+	TagList = []string{`json`, `sql`, `db`, `expr`, `leopard`, `gorm`}
+)
+
+
 func fieldName(fieldName string, tag reflect.StructTag) (string, bool) {
-	switch taggedName := tag.Get("expr"); taggedName {
-	case "-":
-		return "", false
-	case "":
-		return fieldName, true
-	default:
-		return taggedName, true
+	for _, tag := range TagList {
+		switch taggedName := field.Tag.Get(tag); taggedName {
+		case "-":
+			continue
+		case "":
+			return field.Name, true
+		default:
+			return taggedName, true
+		}
 	}
+	return ``, false
 }
 
 type structData struct {
