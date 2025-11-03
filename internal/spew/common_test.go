@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/expr-lang/expr/internal/spew"
+	"github.com/fbatis/expr/internal/spew"
 )
 
 // custom type to test Stinger interface on non-pointer receiver.
