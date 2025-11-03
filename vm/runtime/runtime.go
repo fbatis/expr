@@ -227,8 +227,14 @@ func In(needle any, array any) bool {
 			panic(fmt.Sprintf("cannot use %T as field name of %T", needle, array))
 		}
 		field, ok := v.Type().FieldByName(n.String())
-		if !ok || !field.IsExported() || field.Tag.Get("expr") == "-" {
+		if !ok || !field.IsExported() {
 			return false
+		}
+		for _, tag := range nature.TagList {
+			switch field.Tag.Get(tag) {
+			case "-":
+				return false
+			}
 		}
 		value := v.FieldByIndex(field.Index)
 		if value.IsValid() {
