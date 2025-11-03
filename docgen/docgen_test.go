@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/expr-lang/expr/internal/testify/assert"
-	"github.com/expr-lang/expr/internal/testify/require"
+	"github.com/fbatis/expr/internal/testify/assert"
+	"github.com/fbatis/expr/internal/testify/require"
 
-	. "github.com/expr-lang/expr/docgen"
+	. "github.com/fbatis/expr/docgen"
 )
 
 type Tweet struct {
