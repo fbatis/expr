@@ -7,9 +7,12 @@ import (
 	"strconv"
 	"unicode/utf8"
     
-	"github.com/expr-lang/expr/checker/nature"
 	"github.com/expr-lang/expr/internal/deref"
 	"github.com/expr-lang/expr/vm/runtime"
+)
+
+var (
+	TagList = []string{`json`, `sql`, `db`, `expr`, `leopard`, `gorm`}
 )
 
 func Len(x any) any {
@@ -422,7 +425,7 @@ func get(params ...any) (out any, err error) {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			for _, tag := range nature.TagList {
+			for _, tag := range TagList {
 				switch field.Tag.Get(tag) {
 				case "-":
 					continue
