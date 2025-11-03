@@ -7,6 +7,7 @@ import (
 	"math"
 	"reflect"
 
+	"github.com/expr-lang/expr/checker/nature"
 	"github.com/expr-lang/expr/internal/deref"
 )
 
@@ -65,14 +66,17 @@ func Fetch(from, i any) any {
 		fieldName := i.(string)
 		value := v.FieldByNameFunc(func(name string) bool {
 			field, _ := v.Type().FieldByName(name)
-			switch field.Tag.Get("expr") {
-			case "-":
-				return false
-			case fieldName:
-				return true
-			default:
-				return name == fieldName
+			for _, tag := range nature.TagList {
+				switch field.Tag.Get(tag) {
+				case "-":
+					continue
+				case fieldName:
+					return true
+				default:
+					return name == fieldName
+				}
 			}
+			return false
 		})
 		if value.IsValid() {
 			return value.Interface()
