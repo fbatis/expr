@@ -1,8 +1,8 @@
 package optimizer
 
 import (
-	. "github.com/expr-lang/expr/ast"
-	"github.com/expr-lang/expr/parser/operator"
+	. "github.com/fbatis/expr/ast"
+	"github.com/fbatis/expr/parser/operator"
 )
 
 /*
