@@ -6,11 +6,11 @@ package vm_test
 import (
 	"testing"
 
-	"github.com/expr-lang/expr/internal/testify/require"
+	"github.com/fbatis/expr/internal/testify/require"
 
-	"github.com/expr-lang/expr/compiler"
-	"github.com/expr-lang/expr/parser"
-	"github.com/expr-lang/expr/vm"
+	"github.com/fbatis/expr/compiler"
+	"github.com/fbatis/expr/parser"
+	"github.com/fbatis/expr/vm"
 )
 
 func TestDebugger(t *testing.T) {
