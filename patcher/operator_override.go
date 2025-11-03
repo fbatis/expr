@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/expr-lang/expr/ast"
-	"github.com/expr-lang/expr/builtin"
-	"github.com/expr-lang/expr/checker/nature"
-	"github.com/expr-lang/expr/conf"
+	"github.com/fbatis/expr/ast"
+	"github.com/fbatis/expr/builtin"
+	"github.com/fbatis/expr/checker/nature"
+	"github.com/fbatis/expr/conf"
 )
 
 type OperatorOverloading struct {
