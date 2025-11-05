@@ -33,7 +33,7 @@ func columnName(f reflect.StructField) string {
 			return n
 		}
 	}
-	return strings.ToLower(f.Name)
+	return f.Name
 }
 
 func Fetch(from, i any) any {
